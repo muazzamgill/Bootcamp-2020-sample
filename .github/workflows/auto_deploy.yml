@@ -1,0 +1,22 @@
+name: BootCamp 2020 muazzam
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Installing Node Modules
+      uses: actions/setup-node@v2-beta
+      with:
+        node-version: 12
+        
+    - name: Installing surge
+      run: npm install -g surge
+    - name: deploying using Surge
+      run: surge ./ http://samplebootcamp2020muazzam.surge.sh --token $ {{ secrets.TOKEN }}
